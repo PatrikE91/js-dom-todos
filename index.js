@@ -25,7 +25,7 @@ function render(todos) {
         .then((response) => response.json())
         .then(function () {
           list.innerHTML = "";
-          read();
+          readAsync();
         });
     } else {
       fetch(url + todos.id, {
@@ -38,7 +38,7 @@ function render(todos) {
         .then((response) => response.json())
         .then(function () {
           list.innerHTML = "";
-          read();
+          readAsync();
         });
     }
   });
@@ -53,7 +53,7 @@ function render(todos) {
       })
       .then(function (todos) {
         list.innerHTML = "";
-        read();
+        readAsync();
       });
   });
 
@@ -92,18 +92,31 @@ function submitEvent() {
       .then(function (todos) {
         list.innerHTML = "";
         form.reset();
-        read();
+        readAsync();
       });
   });
 }
 submitEvent();
 
-fetch(url)
-  .then((res) => res.json())
-  .then((todos) => renderAll(todos));
+// fetch(url)
+//   .then((res) => res.json())
+//   .then((todos) => renderAll(todos));
 
-function read() {
-  fetch(url)
-    .then((res) => res.json())
-    .then((todos) => renderAll(todos));
+// function read() {
+//   fetch(url)
+//     .then((res) => res.json())
+//     .then((todos) => renderAll(todos));
+// }
+
+async function readAsync() {
+  let response = await fetch(url);
+  let json = await response.json();
+  renderAll(json)
 }
+
+function init() {
+  readAsync()
+    .then(result => console.log(result))
+    .catch(err => console.error(err))
+}
+init();
