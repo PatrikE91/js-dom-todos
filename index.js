@@ -1,5 +1,5 @@
 const list = document.querySelector("#todo-list");
-const url = "http://localhost:3000/todos";
+const url = "http://localhost:3000/todos/";
 
 function render(todos) {
   const list = document.querySelector("#todo-list");
@@ -70,7 +70,7 @@ function renderAll(todos) {
 }
 
 function submitEvent() {
-  const form = document.querySelector(".form");
+  const form = document.querySelector("form");
   const newTodo = document.querySelector(".text");
 
   form.addEventListener("submit", (e) => {
