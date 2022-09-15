@@ -1,5 +1,5 @@
 const list = document.querySelector("#todo-list");
-const url = "http://localhost:3000/todos/";
+const url = "http://localhost:3000/todos";
 
 function render(todos) {
   const list = document.querySelector("#todo-list");
@@ -119,4 +119,5 @@ function init() {
     .then(result => console.log(result))
     .catch(err => console.error(err))
 }
+
 init();
